@@ -1,0 +1,267 @@
+body {
+    background-color: #2671d3;
+    font-family: "Sans-serif", sans-serif;
+  }
+  
+  .border-line {
+    border-top: 1px solid #ccc;
+    margin-bottom: 15px;  
+  }
+
+  .login-box {
+    width: 360px;
+    min-height: 300px;
+    height: auto !important;  
+    margin: auto;
+    border-radius: 5px;
+    background-color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);      
+  }
+
+  .login-box label{
+    margin-top: 5px;
+  }
+
+  .login-box h1 {
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  #login-btn{
+    margin-top: 15px;
+    background-color: #2671d3;
+    color: white;
+  }
+  .container {
+    width: 100%;
+    height: auto;
+    background-color: #ffffff;
+    color: #000000;
+    border-radius: 5px;
+    align-items: center;
+    justify-content: center;
+    text-align: left;
+  }
+
+  .box{
+    padding: 10px 10px 10px 10px;
+    margin: 30px 30px 30px 30px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .main-det{
+    width: 80%;
+    height: auto !important;
+    background-color: #ffffff;
+    color: #000000;
+    border-radius: 5px;
+    text-align: left;
+  }
+
+  .main-con {
+    display: table;
+  }
+
+  .container .sub-container{
+    padding-top: 10px;
+    min-height: auto;
+    overflow: hidden;
+  }
+
+  .container .con-create{
+    width: 100%;
+  }
+
+  .sub-container h2{
+    font-size: 25px;
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .sub-container .btn{
+    margin-left: 10px;
+    margin-bottom: 20px;
+  }
+  .btn.btn-warning.btn-sm{
+    margin-right: 0px;
+  }
+
+  .table > tbody {
+    padding: 20px;
+  }
+  
+  .table > thead {
+    color: white !important;
+    vertical-align: bottom;
+  }
+
+  .item-list{
+    color: #000000;
+    display: flex;
+    padding: 20px;
+    width: 75%;
+  }
+
+  .nama-event {
+    font-size: large !important;
+  }
+
+  .event-detail {
+    margin-bottom: 20px;
+    margin-left: 15px;
+  }
+
+  .event-detail h2{
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+
+  .event-detail h3 {
+    font-size: 18px;
+    margin-bottom: 5px;
+  }
+
+  .event-detail p {
+    margin: 5px 0;
+  }
+  
+
+  table {
+    width: 50%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    border-radius: 12px 12px 0 0;
+    margin-bottom: 50px;
+  }
+
+  td,
+  th {
+    /* padding: 10px 10px; */
+    text-align: left;
+  }
+
+  th {
+    width: 80%;
+    background-color: #584e46;
+    color: #000000;
+    font-family: 'Open Sans', Sans-serif;
+    font-weight: bold;
+  }
+
+  tr {
+    width: 80%;
+    background-color: #fafafa;
+    font-family: 'Montserrat', sans-serif;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #eeeeee;
+  }
+
+  .action {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  form {
+    width: 300px;
+    margin-left: 20px;
+  }
+  
+  form label {
+    display: flex;
+    margin-top: 20px;
+    font-size: 18px;
+  }
+  
+  form input {
+    width: 100%;
+    padding: 7px;
+    border: none;
+    border: 1px solid gray;
+    border-radius: 6px;
+    outline: none;
+  }
+
+  input[type="button"] {
+    width: 320px;
+    height: 35px;
+    margin-top: 20px;
+    border: none;
+    background-color: #0b7feb;
+    color: white;
+    font-size: 18px;
+  }
+
+  nav {
+    height: 75px;
+    width: 100%;
+    background-color: #ffffff;
+    border-radius: 2px;
+  }
+
+  nav .btn{
+    margin-left: 0px;
+    float: right;
+  }
+
+  h2 {
+    font-size: 30px; /* change size to desired value */
+    margin-left: 10px;
+  }
+
+  nav i.fas.fa-user {
+    font-size: 30px; /* change size to desired value */
+    color: black;
+  }
+
+  ul {
+    display: flex;
+    flex-wrap: wrap; /* ensures that items wrap if there are too many to fit on one row */
+    padding: 0;
+  }
+
+  ul li{
+    list-style: none;
+    margin-left: 20px;
+    margin-right: 10px;
+    margin-top: 20px;
+    font-size: 20px;
+  }
+
+  .nav-div li.buton {
+    margin-left: auto;
+  }
+  
+
+  form .d-flex{
+    margin-right: 0px;
+  }
+
+  .back-button {
+    margin-left: 15px;
+    margin-bottom: 20px;
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #0d6efd;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+
+  .nav-div li img{
+    width: 20%;
+  }
+
+  form .search{
+    margin-left: auto !important;
+  }
+
+  
