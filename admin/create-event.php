@@ -34,7 +34,7 @@ if (isset($_POST['add_event'])) {
 
   if (move_uploaded_file($_FILES['img_tiket']['tmp_name'], $path)) {
     echo "<script> alert('Event berhasil di upload.');
-        window.location.href='dashboard.php';
+        window.location.href='dashboard.php?add=success';
 
         </script>";
   }
@@ -57,13 +57,20 @@ if (isset($_POST['add_event'])) {
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/main.css" />
-
+  <link rel="icon" href="../assets/images/logo/logo.png">
+  <title>Admin</title>
 </head>
 <script>
   <?php if (isset($_SESSION['id_seat_active'])) : ?>
     var button = document.getElementById("seat_Active");
     button.disabled = !button.disabled;
   <?php endif; ?>
+
+  function confirmLogout(event) {
+    if (!confirm("Apakah Anda yakin ingin logout?")) {
+      event.preventDefault();
+    }
+  }
 </script>
 
 <body>
@@ -77,22 +84,12 @@ if (isset($_POST['add_event'])) {
                     <h3><?php echo $row['nama_admin']; ?></h3>
                 </li> -->
         <li class="buton">
-          <a class="btn btn-danger" href="dashboard.php?logout=1">Logout</a>
+          <a class="btn btn-danger" onclick="confirmLogout(event);" href="dashboard.php?logout=1">Logout</a>
         </li>
       </ul>
     </div>
   </nav>
-  <?php
-  if (isset($_GET["success"]) && $_GET["success"] == true) {
-    echo '<div id="alert" class="alert alert-success alert-dismissible fade show col-lg-4 col-sm-5" role="alert">Skill berhasil ditambahkan!
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>';
-  } else if (isset($_GET["success"]) && $_GET["success"] == false) {
-    echo '<div id="alert" class="alert alert-danger alert-dismissible fade show" role="alert">Terjadi kesalahan
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>';
-  }
-  ?>
+
 
   <div class="box">
     <div class="left" style="margin-right: 30px;">

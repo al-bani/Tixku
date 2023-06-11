@@ -43,7 +43,7 @@ $_SESSION['tax_id'] = $taxid;
 $id_user = $_SESSION['user_id'];
 
 if (isset($_POST['buy'])) {
-    $q_insert = "INSERT INTO tb_invoice (id_invoice, id_user, id_seat, id_event, method_tx, seat, total, tx_date) VALUES ('$invoice_id','$id_user','$id_seat','$event','Virtual Account','$seat','$price', '$currentDate') ";
+    $q_insert = "INSERT INTO tb_invoice (id_invoice, id_user, id_seat, id_event, method_tx, seat, total, tx_date) VALUES ('$invoice_id','$id_user','$id_seat','$event','Qris','$seat','$price', '$currentDate') ";
     $result_insert = mysqli_query($conn, $q_insert);
     if ($result_insert) {
         header('location: ../invoice.php');
@@ -76,8 +76,10 @@ QRcode::png($json, $folder . "qris.png", 'H');
 $exp_trx = date('d F Y', strtotime("+1 day"));
 $schedule = date('d F Y', strtotime($row['event_schedule']));
 
+
 if (isset($_POST['fail'])) {
-    header("location: ../events.php");
+    $seat_col = $_SESSION['seat'];
+    header("location: ../checkout.php?seat=$seat_col&event=$event&payment=failed");
 }
 
 ?>
@@ -87,7 +89,8 @@ if (isset($_POST['fail'])) {
 <html>
 
 <head>
-    <title>Arcana by HTML5 UP</title>
+    <link rel="icon" href="../assets/images/logo/logo.png">
+    <title>Payment</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="../assets/css/main.css" />

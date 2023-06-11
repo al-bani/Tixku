@@ -27,7 +27,8 @@ $_SESSION['price_usd'] = $usd_price;
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../assets/css/main.css" />
-    <title>Document</title>
+    <link rel="icon" href="../assets/images/logo/logo.png">
+    <title>Payment</title>
 </head>
 
 <body class="is-preload">
@@ -79,12 +80,12 @@ $_SESSION['price_usd'] = $usd_price;
                 <div id="paypal-payment-button">
 
                 </div>
-                <button>CANCEL</button>
+                <button onclick="location.href='../checkout.php?seat=<?= $_SESSION['seat'] ?>&event=<?= $event ?>'">CANCEL</button>
             </div>
         </div>
     </section>
 
-    <script src="https://www.paypal.com/sdk/js?client-id=AZc7gISngCVfWIqTNzlMZRSCsd7cte4sTB4ZrK7JEJHUGO9CEALMKj4mzo5ZIe2i6DRAiOhJouUWqxXF"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id=AZc7gISngCVfWIqTNzlMZRSCsd7cte4sTB4ZrK7JEJHUGO9CEALMKj4mzo5ZIe2i6DRAiOhJouUWqxXF&disable-funding=credit,card"></script>
     <script>
         paypal.Buttons({
             createOrder: function(data, actions) {
@@ -109,7 +110,9 @@ $_SESSION['price_usd'] = $usd_price;
 
 
             onCancel: function(data) {
-                window.location.replace("../events-detail.php?event=<?= $event ?>")
+
+
+                window.location.href = "../checkout.php?seat=<?= $_SESSION['seat'] ?>&event=<?= $event ?>&payment=failed"
             }
         }).render('#paypal-payment-button');
     </script>

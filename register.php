@@ -66,7 +66,7 @@ if (isset($_POST['register'])) {
 
             echo "<script>
             alert('Anda Telah Berhasil Register, Silahkan Login.');
-            location.href(login.php);
+            location.href='login.php';
            
             </script>";
         } else {
@@ -84,6 +84,7 @@ if (isset($_POST['register'])) {
 
 <head>
     <title>register</title>
+    <link rel="icon" href="assets/images/logo/logo.png">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 

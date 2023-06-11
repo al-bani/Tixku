@@ -8,7 +8,7 @@ require('vendor/autoload.php');
 $invoice_id = $_SESSION['id_invoice'];
 
 $generator = new Picqer\Barcode\BarcodeGeneratorPNG();
-file_put_contents('payment/temp/barcode.png', $generator->getBarcode("$invoice_id", $generator::TYPE_CODE_128));
+file_put_contents("payment/barcode/$invoice_id.png", $generator->getBarcode("$invoice_id", $generator::TYPE_CODE_128));
 
 $q = "SELECT * FROM tb_invoice i INNER JOIN tb_event e ON i.id_event = e.id_event INNER JOIN tb_seat s on i.id_seat = s.id_seat INNER JOIN tb_users u ON i.id_user = u.user_id WHERE i.id_invoice = '$invoice_id'";
 $result = mysqli_query($conn, $q);
@@ -27,7 +27,8 @@ $year_schedule = date('Y', strtotime($schedule));
 <html>
 
 <head>
-  <title>Arcana by HTML5 UP</title>
+  <title>Invoice</title>
+  <link rel="icon" href="assets/images/logo/logo.png">
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
   <link rel="stylesheet" href="assets/css/main.css" />
@@ -101,7 +102,11 @@ $year_schedule = date('Y', strtotime($schedule));
                 <p><?= $schedule ?> </p>
               </td>
               <td>
-                <p>Rp. <?= $price ?> </p>
+                <?php if ($row['method_tx'] == 'Paypal') { ?>
+                  <p>$ <?= $price ?> </p>
+                <?php } else { ?>
+                  <p>Rp. <?= $price ?> </p>
+                <?php } ?>
               </td>
             </tr>
           </table>
@@ -168,7 +173,7 @@ $year_schedule = date('Y', strtotime($schedule));
               </svg>
               <h1>Ticket</h1>
               <h2><?= $row['event_name']  ?><span class="year-span"> <?= $year_schedule ?></span></h2>
-              <div class="barcode-container"><img src="payment/temp/barcode.png" alt=""></div>
+              <div class="barcode-container"><img src="payment/barcode/<?= $invoice_id ?>.png" alt=""></div>
             </div>
           </div>
 
@@ -201,81 +206,7 @@ $year_schedule = date('Y', strtotime($schedule));
   </section>
 
   <!-- Footer -->
-  <div id="footer">
-    <div class="container">
-      <div class="row">
-        <section class="col-3 col-6-narrower col-12-mobilep">
-          <h3>Links to Stuff</h3>
-          <ul class="links">
-            <li><a href="#Soon">Now playing</a></li>
-            <li><a href="#Cari-btn">Cari Tiket</a></li>
-            <li><a href="#Home-btn">Home</a></li>
-            <li><a href="#">My Ticket</a></li>
-          </ul>
-        </section>
-        <section class="col-3 col-6-narrower col-12-mobilep">
-          <h3>Support</h3>
-          <ul class="links">
-            <li><a href="#">Guide</a></li>
-            <li><a href="#">Privacy Policy</a></li>
-            <li><a href="#">Term & Condition</a></li>
-            <li><a href="#">About Our Team</a></li>
-            <li><a href="#">Contact Us</a></li>
-          </ul>
-        </section>
-        <section class="col-6 col-12-narrower">
-          <h3>Get In Touch</h3>
-          <form>
-            <div class="row gtr-50">
-              <div class="col-6 col-12-mobilep">
-                <input type="text" name="name" id="name" placeholder="Name" />
-              </div>
-              <div class="col-6 col-12-mobilep">
-                <input type="email" name="email" id="email" placeholder="Email" />
-              </div>
-              <div class="col-12">
-                <textarea name="message" id="message" placeholder="Message" rows="5"></textarea>
-              </div>
-              <div class="col-12">
-                <ul class="actions">
-                  <li>
-                    <input type="submit" class="button alt" value="Send Message" />
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </form>
-        </section>
-      </div>
-    </div>
-
-    <!-- Icons -->
-    <ul class="icons">
-      <li>
-        <a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a>
-      </li>
-      <li>
-        <a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a>
-      </li>
-      <li>
-        <a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a>
-      </li>
-      <li>
-        <a href="#" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a>
-      </li>
-      <li>
-        <a href="#" class="icon brands fa-google-plus-g"><span class="label">Google+</span></a>
-      </li>
-    </ul>
-
-    <!-- Copyright -->
-    <div class="copyright">
-      <ul class="menu">
-        <li>&copy; Untitled. All rights reserved</li>
-        <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-      </ul>
-    </div>
-  </div>
+  <?php include('layout/footer.php') ?>
 </body>
 
 </html>

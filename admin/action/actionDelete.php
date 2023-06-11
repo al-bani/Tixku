@@ -6,6 +6,5 @@
 
     mysqli_query($conn, $query);
 
-    header('location: ../dashboard.php ');
+    header('location: ../dashboard.php?delete=success ');
     die();
-?>

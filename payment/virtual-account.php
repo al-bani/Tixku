@@ -79,7 +79,8 @@ $exp_trx = date('d F Y', strtotime("+1 day"));
 $schedule = date('d F Y', strtotime($row['event_schedule']));
 
 if (isset($_POST['fail'])) {
-    header("location: ../events.php");
+    $seat_col = $_SESSION['seat'];
+    header("location: ../checkout.php?seat=$seat_col&event=$event&payment=failed");
 }
 
 
@@ -91,7 +92,8 @@ if (isset($_POST['fail'])) {
 <html>
 
 <head>
-    <title>Arcana by HTML5 UP</title>
+    <link rel="icon" href="../assets/images/logo/logo.png">
+    <title>Payment</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="../assets/css/main.css" />
@@ -164,15 +166,15 @@ if (isset($_POST['fail'])) {
                         </form>
                     </div>
                 </div>
-                <h4> Duis ornare vulputate odio ut convallis : </h4>
+                <h4> Cara Menggunakan Virtual Account Sistem : </h4>
                 <p style="padding-top: 0;">
-                    1. Vivamus in ex vulputate, sodales lectus non, vulputate ante. Ut fringilla mi lacus, eu consequat metus pulvinar at. <br>
-                    2. In condimentum molestie nunc, sit amet cursus augue luctus quis.<br>
-                    3. Aliquam egestas hendrerit enim, sit amet mollis justo hendrerit et. Suspendisse feugiat lacus sit amet porttitor congue.<br>
-                    4. Donec ultricies hendrerit felis, nec efficitur ipsum pellentesque in.<br>
-                    5. Donec rutrum lectus aliquam malesuada dignissim.<br>
-                    6. Sed tempus, justo non ullamcorper dignissim, dolor quam gravida nisl, vitae sagittis metus lacus fringilla sapien.<br>
-                    7.Suspendisse non interdum augue, in pulvinar libero. Duis blandit sit amet lorem non semper. Donec rutrum risus at efficitur dignissim.<br>
+                    1. Pihak penjual akan memberikan nomor virtual akun khusus untuk pembeli <br>
+                    2. Pembeli akan menyalin kode pembayaran atau kode VA yang Anda dapatkan dari aplikasi pembelian <br>
+                    2. Buka aplikasi m-banking lalu pilih metode pembayaran 'Virtual Account' <br>
+                    3. Masukan kode VA yang sudah Anda dapatkan sebelumnya <br>
+                    4. Nominal pembayaran akan ditampilkan pada layar Anda secara otomatis <br>
+                    4. Jika dirasa sudah benar, masukan pin m-banking untuk menyelesaikan transaksi <br>
+                    5. Pembayaran akan terkonfirmasi dalam beberapa menit <br>
                 </p>
             </div>
         </div>

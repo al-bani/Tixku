@@ -11,7 +11,7 @@ if (isset($_GET['logout'])) {
     unset($_SESSION['logged_in']);
     unset($_SESSION['kode_karyawan']);
     unset($_SESSION['email_admin']);
-    header('location: loginPage.php');
+    header('location: loginPage.php?logout=success');
     exit;
   }
 }
@@ -31,12 +31,20 @@ $row = mysqli_fetch_assoc($q_a);
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="../assets/images/logo/logo.png">
   <title>Dashboard</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
+<script>
+  function confirmLogout(event) {
+    if (!confirm("Apakah Anda yakin ingin logout?")) {
+      event.preventDefault();
+    }
+  }
+</script>
 
 <body>
   <nav>
@@ -49,12 +57,33 @@ $row = mysqli_fetch_assoc($q_a);
                     <h3><?php echo $row['nama_admin']; ?></h3>
                 </li> -->
         <li class="buton">
-          <a class="btn btn-danger" href="dashboard.php?logout=1">Logout</a>
+          <a class="btn btn-danger" href="dashboard.php?logout=1" onclick="confirmLogout(event);">Logout</a>
         </li>
       </ul>
     </div>
   </nav>
   <div class="container main-con mt-4" style="display: table;">
+
+    <?php if (isset($_GET['message'])) { ?>
+      <div id="alert" class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+        Berhasil Login
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    <?php } else if (isset($_GET["add"])) {
+      echo '<div id="alert" class="alert alert-success alert-dismissible fade show col-lg-4 col-sm-5" role="alert">event berhasil ditambahkan
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>';
+    } else if (isset($_GET["update"])) {
+      echo '<div id="alert" class="alert alert-success alert-dismissible fade show col-lg-4 col-sm-5" role="alert">event berhasil diupdate
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>';
+    } else if (isset($_GET["delete"])) {
+      echo '<div id="alert" class="alert alert-success alert-dismissible fade show col-lg-4 col-sm-5" role="alert">event berhasil dihapus
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>';
+    }
+    ?>
+
     <div class="sub-container">
       <h2>Event List</h2>
       <button class="btn btn-primary" type="button" onclick="location.href='create-event.php'">Create Event</button>
@@ -86,6 +115,10 @@ $row = mysqli_fetch_assoc($q_a);
                 <div class="modal-body">
                   <form action="edit.php?id_event=<?php echo $row['id_event'] ?>&id_seat=<?= $row['id_seat'] ?>" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="size" value="1000000">
+                    <div class="mb-3">
+                      <label for="img">Event Banner</label>
+                      <img width="400px" src="../assets/images/banner/<?= $row['event_banner'] ?>" id="img" alt="">
+                    </div>
                     <div class="mb-3">
                       <label for="nama">Nama Event</label>
                       <input id="nama" type="text" name="Nama_event" class="form-control my-3" value="<?php echo $row['event_name'] ?>" required>
@@ -130,7 +163,6 @@ $row = mysqli_fetch_assoc($q_a);
 
                     <div align="right">
                       <input type="submit" class="btn btn-primary mt-3" name="up" value="Submit">
-                      <a class="btn btn-danger mt-3" href="delete.php?id_event=<?php echo $row['id_event']; ?>" role="button" onclick="return confirm('yakin akan menghapus event ini?')">Delete</a>
                     </div>
                   </form>
                 </div>
@@ -145,7 +177,6 @@ $row = mysqli_fetch_assoc($q_a);
   <script src="js/bootstrap.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-
 </body>
 
 </html>
